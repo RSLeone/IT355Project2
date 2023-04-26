@@ -116,5 +116,6 @@ public class Classes {
 
         Person testPerson = new Employee("TestName", "222", "3333333333", "111111111").getEmployee();
         System.out.println(testPerson.toString());
+        // CWE-586: Explicit Call to Finalize()
     }
 }

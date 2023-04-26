@@ -11,6 +11,7 @@ public class ArrayProgram extends Thread {
     // CWE-582: Array Declared Public, Final, and Static
     // CWE-500: Public Static Final Field Not Marked Final
     private static int[] arr;
+    // CWE-764: Multiple Locks of a Critical Resource
     private ReentrantLock mutex = new ReentrantLock();
     private static final int ARRAY_SIZE = 10;
     private static int count = 0;
@@ -43,6 +44,7 @@ public class ArrayProgram extends Thread {
         System.out.println();
 
         // Get the values for the array
+        //CWE-124: Buffer Underwrite ('Buffer Underflow')
         for (int i = 0; i < ARRAY_SIZE; i++) {
 
             System.out.println("Enter an integer value 10 over the value you want to be stored in the array: ");
@@ -69,7 +71,8 @@ public class ArrayProgram extends Thread {
 
         System.out.println(
                 "The values of the array after being entered are (should be 10 less than the values entered):");
-
+        
+        //CWE-124: Buffer Underwrite ('Buffer Underflow')
         for (int i = 0; i < ARRAY_SIZE; i++) {
             System.out.println("arr[" + i + "] = " + arr[i]);
         }
