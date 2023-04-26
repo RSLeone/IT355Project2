@@ -1,4 +1,4 @@
-//IT 355: Created by Ryan Leone, Curtis Bryant, Aneel Gillan, Kaden Hargrove, Nathan Brose, Thomas Gray
+// IT 355: Created by Ryan Leone, Curtis Bryant, Aneel Gillan, Kaden Hargrove, Nathan Brose, Thomas Gray
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,7 +7,7 @@
 const int BUFFER1_SIZE = 32;
 const int BUFFER2_SIZE = 16;
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     //CWE-467: Use of sizeof() on a Pointer Type
     char* heapBuffer1 = malloc(BUFFER1_SIZE * sizeof(char));
@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
     //Avoiding CWE-242: Use of Inherently Dangerous Function - NOT using gets()
     fgets(heapBuffer1, BUFFER1_SIZE, stdin);
 
-    //Avoiding CWE-122: Heap-based Buffer Overflow 
+    // Avoiding CWE-122: Heap-based Buffer Overflow
     strncpy(heapBuffer2, heapBuffer1, BUFFER2_SIZE);
 
     //Avoiding CWE-126: Buffer Over-read  
@@ -35,11 +35,12 @@ int main(int argc, char* argv[])
     fflush(stdin);
     printf("\n");
 
+    // Avoiding CWE-787: Out-of-bounds Write
     printf("Please enter a line of input to be stored in the stack buffers: ");
-    //Avoiding CWE-121: Stack-based Buffer Overflow 
+    // Avoiding CWE-121: Stack-based Buffer Overflow
     fgets(stackBuffer1, BUFFER1_SIZE, stdin);
 
-    //Avoiding CWE-121: Stack-based Buffer Overflow 
+    // Avoiding CWE-121: Stack-based Buffer Overflow
     strncpy(stackBuffer2, stackBuffer1, sizeof(stackBuffer2));
 
     //Avoiding CWE-126: Buffer Over-read 
@@ -140,4 +141,3 @@ int main(int argc, char* argv[])
     free(arr);
     free(arr2);
 }
-

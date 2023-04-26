@@ -118,4 +118,5 @@ public class Classes {
         System.out.println(testPerson.toString());
         // CWE-586: Explicit Call to Finalize()
     }
+    // Avoiding CWE-586: Explicit Call to Finalize()
 }
