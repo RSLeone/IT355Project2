@@ -137,6 +137,7 @@ int main(int argc, char *argv[])
     // CWE-910: Use of Expired File Descriptor (set it to invalid value)
     fd = -1;
 
+    // Avoiding CWE-762: Mismatched Memory Management Routines
     // Avoiding CWE-416: Use After Free
     free(heapBuffer1);
     free(heapBuffer2);
