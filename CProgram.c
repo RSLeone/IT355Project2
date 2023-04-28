@@ -105,6 +105,7 @@ int main(int argc, char *argv[])
     char *arr2 = malloc(BUFFER1_SIZE * sizeof(char));
     char buf[BUFFER2_SIZE];
 
+    // CWE-120: Buffer Copy without Checking Size of Input: using strncpy here instead of strcpy lets us check the size
     // CWE-170: Improper Null Termination
     strncpy(arr2, arr, sizeof(arr2)); // using sizeof destination buffer ensures proper copy and null term
 
@@ -135,7 +136,8 @@ int main(int argc, char *argv[])
     printf("closed the fd.\n");
 
     // CWE-910: Use of Expired File Descriptor (set it to invalid value)
-    fd = -1;
+    fd = -1;    
+
 
     // Avoiding CWE-762: Mismatched Memory Management Routines
     // Avoiding CWE-416: Use After Free

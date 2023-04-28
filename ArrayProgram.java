@@ -16,7 +16,8 @@ public class ArrayProgram extends Thread {
     private static final int ARRAY_SIZE = 10;
     private static int count = 0;
 
-    public static void main(String args[]) throws InterruptedException {
+    // CWE-397 Declaration of Throws for Generic Exception - always specify what kind of exception
+    public static void main(String args[]) throws InterruptedException { 
 
         int numThreads = 2;
 

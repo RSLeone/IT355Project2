@@ -114,6 +114,14 @@ public class Classes {
         newerPerson.toString();
         System.out.println(newPerson.toString());
 
+        // CWE-486: Comparison of Classes by Name
+        // if (p.getClass().equals("Student") - don't do this
+        if (p.getClass() == Employee.class) { // - do this instead
+            System.out.println(p.getName() + " is a employee");
+        } else {
+            System.out.println(p.getName() + " is not a employee");
+        }
+
         Person testPerson = new Employee("TestName", "222", "3333333333", "111111111").getEmployee();
         System.out.println(testPerson.toString());
         // CWE-586: Explicit Call to Finalize()

@@ -11,7 +11,9 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-
+    /* CWE-469: Use of pointer subtraction to determine size
+     * always use a variable to keep track of size (whether or not it changes)
+     */
     const int ARRAY_SIZE = 3;
 
     //CWE-415: Use of Externally-Controlled Format String
