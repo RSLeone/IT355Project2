@@ -14,6 +14,7 @@ int main(int argc, char* argv[])
     /* CWE-469: Use of pointer subtraction to determine size
      * always use a variable to keep track of size (whether or not it changes)
      */
+    //Avoiding CWE-805: Buffer Access with Incorrect Length Value
     const int ARRAY_SIZE = 3;
 
     //CWE-415: Use of Externally-Controlled Format String
@@ -21,6 +22,8 @@ int main(int argc, char* argv[])
         cout << "This is a demonstration of CWE-415: Use of Externally-Controlled Format String... NEVER send in a \"string\" as input!";
     }
 
+    // Avoiding: CWE-908: Use of Uninitialized Resource
+    // Avoiding: CWE-909: Missing Initialization of Resource
     int *array = new int(ARRAY_SIZE);
 
     // CWE-126: Buffer Over-read; CWE-127: Buffer Under-read; 
@@ -142,7 +145,7 @@ int main(int argc, char* argv[])
     //CWE-468: Incorrect Pointer Scaling -- it is a bad idea to "create" a new array based on where the old one was in memory... just let the compiler do its job
     int* revArray = new int(ARRAY_SIZE);
     
-    //CWE-120: Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')
+    //Avoiding: CWE-120: Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')
     //copy array only if sizes are same
     //Avoiding: CWE-124: Buffer Underwrite ('Buffer Underflow')
     if (sizeof(*array) == sizeof(*revArray))
