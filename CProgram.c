@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
     fgets(stackBuffer1, BUFFER1_SIZE, stdin);
 
     // Avoiding CWE-121: Stack-based Buffer Overflow
+    // Avoiding CWE-467: Use of sizeof() on a Pointer Type 
     strncpy(stackBuffer2, stackBuffer1, sizeof(stackBuffer2));
 
     // Avoiding CWE-126: Buffer Over-read
