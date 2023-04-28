@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <fstream>
+#include <random>
 // CWE-676: Use of Potentially Dangerous Function
 #include "banned.h"
 
@@ -56,7 +57,7 @@ int main(int argc, char* argv[])
         cin >> inputValue;
     
     //CWE-396: Declaration of Catch for Generic Exception
-    //CWE-120: Wrap-around Error
+    //CWE-128: Wrap-around Error
     } catch (std::out_of_range e) {
         cerr << "Caught Exception: " << e.what() << endl;
     }
@@ -160,6 +161,32 @@ int main(int argc, char* argv[])
         // CWE-192: Integer Coercion Error
         printf("The array at %d = %0.1lf\n", i, (float)revArray[i]);
     }
+    printf("\n");
+
+    //CWE-337: Predictable Seed in Pseudo-Random Number Generator 
+    random_device rd;
+    mt19937 gen(rd());  // Mersenne Twister engine (non deteministic engine)
+    uniform_int_distribution<int> dist(0, std::numeric_limits<int>::max()); //generate random numbers in full int range
+
+    int seed = dist(gen); //gen random number
+    srand(seed); //seed the pseudo random generator with good source
+
+    //divide each array value by a random number
+    int result;
+    for (int i = 0; i < ARRAY_SIZE; i++)
+    {
+        int denom = rand() % 5; //generates random number between 0 and 4
+        if (denom > 0)
+        {
+            result = array[i] / denom;
+            printf("array[%d] = %d\n %d/%d = %d\n", i, array[i], array[i], denom, result);
+        }
+        else
+        {
+            //CWE-369: Divide by Zero 
+            printf("Cannot divide by zero!\n");
+        }
+    }
 
     //CWE-415: Double Free
     //CWE-401: Missing Release of Memory after Effective Lifetime -- you need to remove pointers
@@ -168,4 +195,10 @@ int main(int argc, char* argv[])
     // Helping to avoid CWE-416: Use After Free
     array = nullptr;
     revArray = nullptr;
+
+    //CWE-561: Dead Code (dont include any unreachable code)
+    // if (false)
+    // {
+    //     printf("This will never print!\n");
+    // }
 }
